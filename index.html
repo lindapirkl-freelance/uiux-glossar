@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI/UX-Glossar</title>
+<meta name="description" content="Interaktives Nachschlagewerk für UI/UX-Begriffe — jedes Beispiel ist ein echtes, bedienbares Mini-UI direkt auf der Seite.">
+<meta name="theme-color" content="#c67a1e">
+<meta property="og:title" content="UI/UX-Glossar">
+<meta property="og:description" content="Interaktives Nachschlagewerk für UI/UX-Begriffe — jedes Beispiel ist ein echtes, bedienbares Mini-UI direkt auf der Seite.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#eef0ec;
+    --surface:#ffffff;
+    --surface-alt:#e4e7e0;
+    --ink:#1b1f1d;
+    --ink-soft:#5b6560;
+    --ink-faint:#8b938d;
+    --line:#d7dcd3;
+    --accent:#c67a1e;
+    --accent-ink:#3d2405;
+    --accent-soft:#f3ddb5;
+    --ok:#2f7d5c;
+    --danger:#c1432e;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#14171a; --surface:#1c2023; --surface-alt:#242a2d; --ink:#eceeea; --ink-soft:#a7b0ab;
+      --ink-faint:#707874; --line:#31373a; --accent:#e2963d; --accent-ink:#1c1200; --accent-soft:#3c2c10;
+      --ok:#4fae85; --danger:#e2694f;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171a; --surface:#1c2023; --surface-alt:#242a2d; --ink:#eceeea; --ink-soft:#a7b0ab;
+    --ink-faint:#707874; --line:#31373a; --accent:#e2963d; --accent-ink:#1c1200; --accent-soft:#3c2c10;
+    --ok:#4fae85; --danger:#e2694f;
+  }
+  :root[data-theme="light"]{
+    --bg:#eef0ec; --surface:#ffffff; --surface-alt:#e4e7e0; --ink:#1b1f1d; --ink-soft:#5b6560;
+    --ink-faint:#8b938d; --line:#d7dcd3; --accent:#c67a1e; --accent-ink:#3d2405; --accent-soft:#f3ddb5;
+    --ok:#2f7d5c; --danger:#c1432e;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px;}
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible, [tabindex]:focus-visible{
+    outline:2.5px solid var(--accent); outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+
+  header.top{display:flex; flex-direction:column; gap:6px; padding-bottom:20px; border-bottom:1px solid var(--line); margin-bottom:20px;}
+  .kicker{font:600 11px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0;}
+  h1{font-size:clamp(28px,4vw,38px); margin:2px 0 4px; letter-spacing:-.01em; text-wrap:balance; font-weight:700;}
+  .lede{color:var(--ink-soft); max-width:64ch; margin:0; font-size:15px;}
+
+  .toolbar{
+    position:sticky; top:0; z-index:30; background:var(--bg); padding:14px 0 12px; margin-bottom:6px;
+    display:flex; flex-direction:column; gap:10px; border-bottom:1px solid var(--line);
+  }
+  .search{display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:9px 12px;}
+  .search svg{flex:none; color:var(--ink-faint);}
+  .search input{border:none; outline:none; background:none; color:var(--ink); font-size:14px; width:100%; font-family:var(--sans);}
+  .search input::placeholder{color:var(--ink-faint);}
+  .chips{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{
+    font:600 11px/1 var(--mono); letter-spacing:.01em; padding:6px 11px; border-radius:20px; border:1px solid var(--line);
+    background:var(--surface); color:var(--ink-soft); cursor:pointer; transition:border-color .15s, color .15s, background .15s;
+  }
+  .chip:hover{border-color:var(--ink-faint);}
+  .chip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink);}
+
+  .cat{margin-top:34px;}
+  .cat-head{display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
+  .cat-head h2{font-size:15px; text-transform:uppercase; letter-spacing:.06em; font-weight:700; margin:0; font-family:var(--mono);}
+  .cat-head .n{color:var(--ink-faint); font:12px/1 var(--mono);}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:12px; align-items:start;}
+  .term{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px; display:flex; flex-direction:column; gap:12px;}
+  .term-demo{
+    min-height:74px; border-radius:8px; background:var(--surface-alt); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; padding:14px; position:relative; flex-wrap:wrap; gap:8px; text-align:center;
+  }
+  .term h3{margin:0; font-size:17px; font-weight:700; letter-spacing:-.01em;}
+  .term .de{margin:1px 0 0; color:var(--ink-faint); font-size:12px; font-family:var(--mono);}
+  .term .def{margin:6px 0 0; color:var(--ink-soft); font-size:13.5px; line-height:1.55;}
+  .term[hidden]{display:none;}
+  .cat[data-empty="true"]{display:none;}
+  .demo-note{font:11px var(--mono); color:var(--ink-faint); width:100%; text-align:center; margin-top:2px;}
+
+  .empty-msg{display:none; color:var(--ink-faint); font-size:14px; padding:40px 0; text-align:center;}
+  .empty-msg.show{display:block;}
+  footer.note{margin-top:48px; padding-top:16px; border-top:1px solid var(--line); color:var(--ink-faint); font-size:12.5px;}
+
+  /* ---------- real component styles used inside the demos ---------- */
+  .btn{font:600 12.5px/1 var(--sans); padding:8px 14px; border-radius:7px; border:1.4px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; transition:background .15s,border-color .15s,color .15s;}
+  .btn:hover{border-color:var(--ink-faint);}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:700;}
+  .btn.primary:hover{filter:brightness(1.06);}
+  .btn.small{padding:5px 10px; font-size:11.5px;}
+  .btn.icon{padding:7px 9px; line-height:1; font-size:15px;}
+  .btn:disabled{opacity:.42; cursor:not-allowed;}
+  .hover-target:hover{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink);}
+
+  .field{width:100%; text-align:left;}
+  .field label{display:block; font:600 10px var(--mono); color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; margin-bottom:5px;}
+  input[type=text],input[type=search],input[type=email],select{
+    font:13px var(--sans); padding:7px 10px; border-radius:6px; border:1.4px solid var(--line); background:var(--surface); color:var(--ink); width:100%;
+  }
+  input.error{border-color:var(--danger);}
+  .err-msg{color:var(--danger); font-size:11.5px; margin-top:4px; display:block; text-align:left;}
+  label.opt{display:flex; gap:7px; align-items:center; font-size:12.5px; cursor:pointer;}
+
+  .switch{display:inline-flex; align-items:center; gap:8px; cursor:pointer; font:12.5px var(--sans); user-select:none;}
+  .switch input{position:absolute; opacity:0; width:0; height:0;}
+  .switch .rail{width:34px; height:19px; border-radius:20px; background:var(--line); position:relative; transition:background .15s; flex:none;}
+  .switch .rail::after{content:""; position:absolute; top:2px; left:2px; width:15px; height:15px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.3); transition:left .15s;}
+  .switch input:checked + .rail{background:var(--accent);}
+  .switch input:checked + .rail::after{left:17px;}
+  .switch input:focus-visible + .rail{outline:2.5px solid var(--accent); outline-offset:2px;}
+
+  .chip-real{display:inline-flex; align-items:center; gap:5px; font:600 11.5px var(--mono); padding:5px 5px 5px 11px; border-radius:20px; background:var(--accent-soft); color:var(--accent-ink); border:1.3px solid var(--accent);}
+  .chip-real button{border:none; background:none; color:inherit; cursor:pointer; font-size:13px; line-height:1; padding:3px 5px; border-radius:50%;}
+  .chip-real button:hover{background:rgba(0,0,0,.1);}
+
+  details.accordion{width:100%; border:1.4px solid var(--line); border-radius:8px; background:var(--surface); text-align:left; overflow:hidden;}
+  details.accordion summary{list-style:none; cursor:pointer; padding:9px 12px; font:600 12.5px var(--sans); display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  details.accordion summary::-webkit-details-marker{display:none;}
+  details.accordion summary::after{content:"⌄"; color:var(--ink-faint); flex:none; transition:transform .15s;}
+  details.accordion[open] summary::after{transform:rotate(180deg);}
+  details.accordion .body{padding:0 12px 11px; font-size:12.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:8px;}
+
+  details.dropdown{position:relative; text-align:left;}
+  details.dropdown summary{list-style:none; cursor:pointer;}
+  details.dropdown summary::-webkit-details-marker{display:none;}
+  details.dropdown[open] summary{border-color:var(--accent);}
+  details.dropdown .menu{position:absolute; top:calc(100% + 4px); left:0; min-width:130px; background:var(--surface); border:1.4px solid var(--line); border-radius:7px; box-shadow:0 6px 18px rgba(0,0,0,.18); z-index:20; overflow:hidden;}
+  details.dropdown .menu button{display:block; width:100%; text-align:left; border:none; background:none; padding:8px 11px; font:12px var(--sans); color:var(--ink); cursor:pointer;}
+  details.dropdown .menu button:hover{background:var(--surface-alt);}
+
+  [data-tip]{position:relative;}
+  [data-tip]::after{
+    content:attr(data-tip); position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%) translateY(3px);
+    background:var(--ink); color:var(--surface); font:9.5px var(--mono); padding:5px 9px; border-radius:5px; white-space:nowrap;
+    opacity:0; pointer-events:none; transition:opacity .12s, transform .12s; z-index:20;
+  }
+  [data-tip]::before{
+    content:""; position:absolute; bottom:calc(100% + 3px); left:50%; transform:translateX(-50%);
+    border:4px solid transparent; border-top-color:var(--ink); opacity:0; transition:opacity .12s; z-index:20;
+  }
+  [data-tip]:hover::after,[data-tip]:focus-visible::after{opacity:1; transform:translateX(-50%) translateY(0);}
+  [data-tip]:hover::before,[data-tip]:focus-visible::before{opacity:1;}
+
+  dialog.modal{border:none; border-radius:12px; padding:0; max-width:320px; width:90%; box-shadow:0 20px 50px rgba(0,0,0,.35); background:var(--surface); color:var(--ink);}
+  dialog.modal::backdrop{background:rgba(0,0,0,.45);}
+  dialog.modal .m-head{padding:16px 18px 0; font-weight:700; font-size:15px; text-align:left;}
+  dialog.modal .m-body{padding:8px 18px 16px; font-size:13px; color:var(--ink-soft); text-align:left;}
+  dialog.modal .m-actions{display:flex; justify-content:flex-end; gap:8px; padding:0 18px 16px;}
+
+  .toast-host{position:fixed; bottom:22px; left:50%; transform:translateX(-50%); z-index:999; display:flex; flex-direction:column; gap:8px; align-items:center;}
+  .toast-item{background:var(--ink); color:var(--surface); font:600 12px var(--sans); padding:10px 16px; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,.3); animation:toastIn .18s ease-out;}
+  @keyframes toastIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .tabbar{display:flex; gap:12px; border-bottom:1.4px solid var(--line); width:100%; justify-content:center;}
+  .tabbar button{font:600 12px var(--sans); padding:8px 2px; border:none; background:none; color:var(--ink-faint); cursor:pointer; border-bottom:2.5px solid transparent; margin-bottom:-1.4px;}
+  .tabbar button[aria-selected="true"]{color:var(--accent); border-color:var(--accent);}
+  .tabpanel{font-size:12.5px; color:var(--ink-soft); padding-top:10px; text-align:left; width:100%;}
+
+  .pager{display:flex; gap:5px; align-items:center; justify-content:center;}
+  .pager button{width:26px; height:26px; border-radius:50%; border:1.4px solid var(--line); background:var(--surface); color:var(--ink-soft); font:600 11px var(--mono); cursor:pointer; padding:0;}
+  .pager button[aria-current="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .pager button:disabled{opacity:.35; cursor:not-allowed;}
+
+  .crumbs{display:flex; gap:6px; align-items:center; font:12px var(--sans); flex-wrap:wrap; justify-content:center;}
+  .crumbs button{border:none; background:none; color:var(--ink-soft); font:12px var(--sans); cursor:pointer; padding:2px 3px;}
+  .crumbs button:hover{color:var(--accent); text-decoration:underline;}
+  .crumbs .sep{color:var(--ink-faint);}
+  .crumbs .current{color:var(--ink); font-weight:700;}
+
+  .step-row{display:flex; align-items:center; gap:6px; justify-content:center; width:100%;}
+  .step-dot{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font:700 10px var(--mono); background:var(--line); color:var(--ink-faint); flex:none;}
+  .step-dot.active{background:var(--accent); color:var(--accent-ink);}
+  .step-dot.done{background:var(--ok); color:#fff;}
+  .step-line{flex:1; height:2px; background:var(--line); min-width:14px; max-width:26px;}
+
+  .draglist{display:flex; flex-direction:column; gap:6px; width:100%; margin:0; padding:0;}
+  .draglist li{list-style:none; padding:7px 10px; border:1.4px solid var(--line); border-radius:7px; background:var(--surface); font:12px var(--sans); display:flex; align-items:center; gap:8px; cursor:grab; text-align:left;}
+  .draglist li.dragging{opacity:.4;}
+  .draglist li .grip{color:var(--ink-faint);}
+
+  .scrollbox{max-height:96px; overflow-y:auto; border:1.4px solid var(--line); border-radius:8px; width:100%; background:var(--surface);}
+  .scrollbox ul{list-style:none; margin:0; padding:6px;}
+  .scrollbox li{padding:6px 8px; font-size:12px; color:var(--ink-soft); border-bottom:1px solid var(--line); text-align:left;}
+  .scrollbox li:last-child{border-bottom:none;}
+
+  .resizer-box{resize:horizontal; overflow:auto; border:1.4px dashed var(--ink-faint); border-radius:8px; padding:10px; min-width:110px; max-width:100%; width:230px; container-type:inline-size; background:var(--surface);}
+  .rb-nav{display:flex; gap:6px; flex-wrap:wrap; font:11px var(--mono);}
+  .rb-nav span{padding:4px 8px; border-radius:5px; background:var(--surface-alt); white-space:nowrap;}
+  @container (max-width: 170px){ .rb-nav{flex-direction:column;} }
+
+  .navlink{color:var(--ink-soft); text-decoration:none; font-size:11.5px;}
+  .navlink:hover{color:var(--accent);}
+  .navlink.current{color:var(--accent); font-weight:700;}
+
+  .sb-item{border:none; background:none; text-align:left; font-size:10.5px; padding:5px 6px; border-radius:5px; color:var(--ink-soft); cursor:pointer; white-space:nowrap; width:100%; display:flex; align-items:center; gap:5px;}
+  .sb-item:hover{background:var(--surface-alt);}
+  .sb-item.current{background:var(--accent-soft); color:var(--accent-ink); font-weight:700;}
+  .sb-demo{display:flex; width:100%; border:1.4px solid var(--line); border-radius:8px; overflow:hidden; background:var(--surface); align-items:flex-start;}
+  .sb-rail{width:100px; padding:8px 6px; display:flex; flex-direction:column; gap:3px; transition:width .15s; overflow:hidden;}
+  .sb-demo.collapsed .sb-rail{width:32px;}
+  .sb-demo.collapsed .sb-item span{display:none;}
+
+  .dm-avatar{width:22px; height:22px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font:700 9.5px/22px var(--mono); text-align:center; flex:none;}
+  .dm-swatch{width:26px; height:26px; border-radius:5px; flex:none;}
+  .dm-skel{border-radius:4px; background:linear-gradient(90deg,var(--line),var(--surface-alt),var(--line)); background-size:200% 100%; animation:shimmer 1.6s ease-in-out infinite;}
+  @keyframes shimmer{0%{background-position:200% 0;} 100%{background-position:-200% 0;}}
+  .dm-spin{width:18px; height:18px; border-radius:50%; border:2.5px solid var(--line); border-top-color:var(--accent); animation:spin .9s linear infinite; flex:none;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <p class="kicker">Nachschlagewerk &middot; interne Nutzung</p>
+    <h1>UI/UX-Glossar</h1>
+    <p class="lede">Begriffe, die beim Beschreiben von Änderungen an euren Apps (Müller, Hoffmann, Schmidt) nützlich sind. Jedes Beispiel ist eine echte, bedienbare Mini-Version des jeweiligen Elements &mdash; zum Ausprobieren direkt hier auf der Seite, nicht nur zum Anschauen.</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="q" type="text" placeholder="Begriff suchen … z. B. „Modal“, „Toggle“, „Fehler“" autocomplete="off">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Nach Kategorie filtern">
+      <button class="chip" data-cat="all" aria-pressed="true">Alle</button>
+      <button class="chip" data-cat="layout" aria-pressed="false">Layout &amp; Navigation</button>
+      <button class="chip" data-cat="bausteine" aria-pressed="false">Bausteine</button>
+      <button class="chip" data-cat="formulare" aria-pressed="false">Formulare</button>
+      <button class="chip" data-cat="feedback" aria-pressed="false">Feedback &amp; Status</button>
+      <button class="chip" data-cat="interaktion" aria-pressed="false">Interaktion</button>
+      <button class="chip" data-cat="prinzipien" aria-pressed="false">Prinzipien</button>
+    </div>
+  </div>
+
+  <p class="empty-msg" id="emptyMsg">Kein Begriff gefunden.</p>
+
+  <!-- LAYOUT & NAVIGATION -->
+  <section class="cat" data-cat="layout">
+    <div class="cat-head"><h2>Layout &amp; Navigation</h2><span class="n">7 Begriffe</span></div>
+    <div class="grid">
+
+      <article class="term" data-name="navbar navigationsleiste menüleiste">
+        <div class="term-demo">
+          <div style="width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1.4px solid var(--line);border-radius:8px;padding:8px 12px;">
+            <strong style="font-size:12px;">Intranet</strong>
+            <div style="display:flex;gap:12px;">
+              <a href="#" class="navlink current">Dashboard</a>
+              <a href="#" class="navlink">Aufträge</a>
+            </div>
+            <div class="dm-avatar">LP</div>
+          </div>
+        </div>
+        <div><h3>Navbar</h3><p class="de">Navigationsleiste</p>
+        <p class="def">Horizontale Leiste oben am Bildschirm mit Logo, Hauptmenü und meist Nutzer-Icon. Bewege die Maus über „Aufträge“ &mdash; das ist der reale Hover-Effekt einer Navbar.</p></div>
+      </article>
+
+      <article class="term" data-name="sidebar seitenleiste">
+        <div class="term-demo">
+          <div class="sb-demo" id="sbDemo">
+            <div class="sb-rail">
+              <button class="sb-item current">🏠<span> Start</span></button>
+              <button class="sb-item">📦<span> Aufträge</span></button>
+              <button class="sb-item">⚙️<span> Einstellungen</span></button>
+            </div>
+            <button class="btn icon small" style="margin:6px;" onclick="toggleSidebar(this)">«</button>
+          </div>
+        </div>
+        <div><h3>Sidebar</h3><p class="de">Seitenleiste</p>
+        <p class="def">Vertikale Leiste am linken Rand mit Menüpunkten. Klicke auf «, um sie wie in echt einzuklappen.</p></div>
+      </article>
+
+      <article class="term" data-name="breadcrumb brotkrümelnavigation pfad">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div class="crumbs" id="crumbDemo">
+              <button onclick="crumbClick(this)">Start</button><span class="sep">/</span>
+              <button onclick="crumbClick(this)">Aufträge</button><span class="sep">/</span>
+              <span class="current">#42</span>
+            </div>
+            <p class="demo-note">Klicke „Start“, um zurückzuspringen. <button class="btn small" style="padding:2px 8px;font-size:10px;" onclick="resetCrumbs()">↺ zurücksetzen</button></p>
+          </div>
+        </div>
+        <div><h3>Breadcrumb</h3><p class="de">Brotkrümelnavigation</p>
+        <p class="def">Zeigt, wo man sich in der Seitenhierarchie befindet, und erlaubt per Klick, eine Ebene zurückzuspringen.</p></div>
+      </article>
+
+      <article class="term" data-name="tabs reiter">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div class="tabbar">
+              <button aria-selected="true" data-panel="7 offene Aufträge, sortiert nach Fälligkeit." onclick="switchTab(this)">Übersicht</button>
+              <button aria-selected="false" data-panel="Kunde, Positionen, Preise, interne Notizen." onclick="switchTab(this)">Details</button>
+              <button aria-selected="false" data-panel="Alle Status-Änderungen mit Zeitstempel." onclick="switchTab(this)">Historie</button>
+            </div>
+            <p class="tabpanel">7 offene Aufträge, sortiert nach Fälligkeit.</p>
+          </div>
+        </div>
+        <div><h3>Tabs</h3><p class="de">Reiter</p>
+        <p class="def">Klicke einen Reiter an &mdash; nur ein Tab zeigt gleichzeitig seinen Inhalt, alle teilen sich denselben Platz.</p></div>
+      </article>
+
+      <article class="term" data-name="pagination seitennavigation">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div class="pager">
+              <button disabled>‹</button>
+              <button data-page="1" aria-current="true" onclick="setPage(this)">1</button>
+              <button data-page="2" onclick="setPage(this)">2</button>
+              <button data-page="3" onclick="setPage(this)">3</button>
+              <button disabled>›</button>
+            </div>
+            <p class="demo-note" id="pageNote">Zeigt Einträge 1–10</p>
+          </div>
+        </div>
+        <div><h3>Pagination</h3><p class="de">Seitennavigation</p>
+        <p class="def">Klicke eine Seitenzahl an &mdash; lange Listen werden so in überschaubare Häppchen aufgeteilt.</p></div>
+      </article>
+
+      <article class="term" data-name="hamburger menü burger menu">
+        <div class="term-demo" style="position:relative;">
+          <button class="btn icon" onclick="toggleHamburger(this)">☰</button>
+          <div style="display:none;position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);background:var(--surface);border:1.4px solid var(--line);border-radius:7px;box-shadow:0 6px 18px rgba(0,0,0,.18);z-index:20;overflow:hidden;min-width:120px;text-align:left;">
+            <a href="#" style="display:block;padding:8px 12px;font-size:11.5px;text-decoration:none;color:var(--ink);">Dashboard</a>
+            <a href="#" style="display:block;padding:8px 12px;font-size:11.5px;text-decoration:none;color:var(--ink);">Aufträge</a>
+            <a href="#" style="display:block;padding:8px 12px;font-size:11.5px;text-decoration:none;color:var(--ink);">Abmelden</a>
+          </div>
+        </div>
+        <div><h3>Hamburger-Menü</h3><p class="de">Burger-Icon</p>
+        <p class="def">Klicke das Icon &mdash; öffnet ein verstecktes Menü. Typisch bei schmalen Bildschirmen (Smartphone).</p></div>
+      </article>
+
+      <article class="term" data-name="footer fußzeile">
+        <div class="term-demo">
+          <div style="width:100%;border-top:1.4px solid var(--line);padding-top:8px;display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-faint);">
+            <span>© 2026 Intranet</span>
+            <span style="display:flex;gap:10px;"><a href="#" style="color:inherit;text-decoration:none;">Impressum</a><a href="#" style="color:inherit;text-decoration:none;">v2.3.1</a></span>
+          </div>
+        </div>
+        <div><h3>Footer</h3><p class="de">Fußzeile</p>
+        <p class="def">Bereich am Ende der Seite mit ergänzenden Links, Impressum, Versionsnummer o. Ä.</p></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- BAUSTEINE -->
+  <section class="cat" data-cat="bausteine">
+    <div class="cat-head"><h2>Bausteine &amp; Komponenten</h2><span class="n">9 Begriffe</span></div>
+    <div class="grid">
+
+      <article class="term" data-name="modal dialog popup fenster">
+        <div class="term-demo">
+          <button class="btn primary small" onclick="document.getElementById('demoModal').showModal()">Auftrag löschen</button>
+          <dialog class="modal" id="demoModal">
+            <div class="m-head">Auftrag #42 löschen?</div>
+            <div class="m-body">Diese Aktion kann nicht rückgängig gemacht werden.</div>
+            <div class="m-actions">
+              <button class="btn small" onclick="document.getElementById('demoModal').close()">Abbrechen</button>
+              <button class="btn primary small" onclick="document.getElementById('demoModal').close()">Löschen</button>
+            </div>
+          </dialog>
+        </div>
+        <div><h3>Modal / Dialog</h3><p class="de">Modales Fenster</p>
+        <p class="def">Klicke den Button &mdash; ein echtes Fenster öffnet sich über der Seite und dunkelt den Hintergrund ab. Erzwingt eine Entscheidung, bevor man weiterarbeiten kann.</p></div>
+      </article>
+
+      <article class="term" data-name="card karte">
+        <div class="term-demo">
+          <div style="width:88%;background:var(--surface);border:1.4px solid var(--line);border-radius:9px;padding:12px;box-shadow:0 1px 4px rgba(0,0,0,.1);text-align:left;">
+            <p style="margin:0 0 3px;font:700 12.5px var(--sans);">Auftrag #42</p>
+            <p style="margin:0;font-size:11px;color:var(--ink-soft);">Schreinerei Müller &middot; fällig 14.08.2026</p>
+          </div>
+        </div>
+        <div><h3>Card</h3><p class="de">Karte</p>
+        <p class="def">Abgegrenzter Kasten mit Rahmen oder Schatten, der zusammengehörige Infos gruppiert &mdash; z. B. ein Auftrag oder ein Kontakt.</p></div>
+      </article>
+
+      <article class="term" data-name="accordion akkordeon aufklappen">
+        <div class="term-demo">
+          <details class="accordion">
+            <summary>Wie ändere ich die Lieferadresse?</summary>
+            <div class="body">Unter „Stammdaten“ &rarr; „Adresse“ kannst du sie jederzeit anpassen.</div>
+          </details>
+        </div>
+        <div><h3>Accordion</h3><p class="de">Akkordeon</p>
+        <p class="def">Klicke die Frage an &mdash; ein nativ aufklappbarer Abschnitt, damit nicht alle Inhalte gleichzeitig sichtbar sein müssen.</p></div>
+      </article>
+
+      <article class="term" data-name="tooltip hinweis sprechblase">
+        <div class="term-demo">
+          <button class="btn small" data-tip="seit 3 Tagen offen" style="cursor:default;">Auftrag #42</button>
+          <p class="demo-note">Fahre mit der Maus darüber.</p>
+        </div>
+        <div><h3>Tooltip</h3><p class="de">Hinweis-Sprechblase</p>
+        <p class="def">Kleine Sprechblase, die beim Hovern über ein Element eine kurze Zusatzerklärung zeigt.</p></div>
+      </article>
+
+      <article class="term" data-name="dropdown auswahlmenü klappmenü">
+        <div class="term-demo">
+          <details class="dropdown">
+            <summary class="btn small">Status: <span class="dstat">Offen</span> ▾</summary>
+            <div class="menu">
+              <button type="button" onclick="pickStatus(this,'Offen')">Offen</button>
+              <button type="button" onclick="pickStatus(this,'In Arbeit')">In Arbeit</button>
+              <button type="button" onclick="pickStatus(this,'Erledigt')">Erledigt</button>
+            </div>
+          </details>
+        </div>
+        <div><h3>Dropdown</h3><p class="de">Auswahlmenü</p>
+        <p class="def">Klicke den Button &mdash; öffnet eine Liste von Optionen; die Auswahl übernimmt den Wert.</p></div>
+      </article>
+
+      <article class="term" data-name="chip tag schlagwort status pille">
+        <div class="term-demo">
+          <div id="chipRow" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+            <span class="chip-real">Dringend <button onclick="this.parentElement.remove()">×</button></span>
+            <span class="chip-real">Möbel <button onclick="this.parentElement.remove()">×</button></span>
+          </div>
+          <p class="demo-note">Klicke „×“, um ein Tag zu entfernen. <button class="btn small" style="padding:2px 8px;font-size:10px;" onclick="resetChips()">↺ zurücksetzen</button></p>
+        </div>
+        <div><h3>Chip / Tag</h3><p class="de">Schlagwort-Pille</p>
+        <p class="def">Kleine, abgerundete Markierung für ein Schlagwort oder einen Status, oft mit eigener Entfernen-Aktion.</p></div>
+      </article>
+
+      <article class="term" data-name="avatar profilbild kürzel">
+        <div class="term-demo">
+          <div class="dm-avatar" data-tip="Linda Pirkl" style="width:36px;height:36px;line-height:36px;font-size:14px;cursor:default;">LP</div>
+          <p class="demo-note">Hover zeigt den vollen Namen.</p>
+        </div>
+        <div><h3>Avatar</h3><p class="de">Profilbild / Kürzel</p>
+        <p class="def">Rundes Bild oder Namenskürzel, das eine Person oder Firma repräsentiert, meist oben rechts oder in Listen.</p></div>
+      </article>
+
+      <article class="term" data-name="badge zähler marker count">
+        <div class="term-demo">
+          <div style="position:relative;font-size:22px;">📥<span style="position:absolute;top:-4px;right:-10px;background:var(--danger);color:#fff;font:700 10px var(--mono);padding:1px 5px;border-radius:9px;min-width:16px;text-align:center;">12</span></div>
+        </div>
+        <div><h3>Badge</h3><p class="de">Zähl-Marker</p>
+        <p class="def">Kleiner Zähler an einem Icon, der auf neue oder ungelesene Einträge hinweist &mdash; hier 12 ungelesene im Posteingang.</p></div>
+      </article>
+
+      <article class="term" data-name="divider trennlinie">
+        <div class="term-demo">
+          <hr style="width:85%;border:none;border-top:1.4px solid var(--line);margin:0;">
+        </div>
+        <div><h3>Divider</h3><p class="de">Trennlinie</p>
+        <p class="def">Dünne Linie, die Inhalte optisch trennt, ohne einen eigenen Rahmen oder Kasten zu brauchen.</p></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FORMULARE -->
+  <section class="cat" data-cat="formulare">
+    <div class="cat-head"><h2>Formulare &amp; Eingabe</h2><span class="n">8 Begriffe</span></div>
+    <div class="grid">
+
+      <article class="term" data-name="input field eingabefeld textfeld">
+        <div class="term-demo">
+          <div class="field"><label>Firma</label><input type="text" value="Schreinerei Müller"></div>
+        </div>
+        <div><h3>Input Field</h3><p class="de">Eingabefeld</p>
+        <p class="def">Klicke ins Feld und tippe &mdash; ein echtes Textfeld zur Eingabe von Werten, meist mit Label darüber.</p></div>
+      </article>
+
+      <article class="term" data-name="checkbox kästchen mehrfachauswahl">
+        <div class="term-demo">
+          <div style="display:flex;flex-direction:column;gap:6px;text-align:left;">
+            <label class="opt"><input type="checkbox" checked> Rechnung beilegen</label>
+            <label class="opt"><input type="checkbox"> Express-Versand</label>
+          </div>
+        </div>
+        <div><h3>Checkbox</h3><p class="de">Kästchen</p>
+        <p class="def">An- oder Abwählen einer von mehreren unabhängigen Optionen &mdash; auch mehrere gleichzeitig möglich. Probier's aus.</p></div>
+      </article>
+
+      <article class="term" data-name="radio button auswahlknopf einfachauswahl">
+        <div class="term-demo">
+          <div style="display:flex;flex-direction:column;gap:6px;text-align:left;">
+            <label class="opt"><input type="radio" name="pay-demo" checked> Rechnung</label>
+            <label class="opt"><input type="radio" name="pay-demo"> Vorkasse</label>
+          </div>
+        </div>
+        <div><h3>Radio Button</h3><p class="de">Auswahlknopf</p>
+        <p class="def">Auswahl genau einer Option aus einer Gruppe &mdash; im Gegensatz zur Checkbox nie mehrfach. Klicke die zweite Option an.</p></div>
+      </article>
+
+      <article class="term" data-name="toggle switch schalter ein aus">
+        <div class="term-demo">
+          <label class="switch"><input type="checkbox" checked><span class="rail"></span> Benachrichtigungen</label>
+        </div>
+        <div><h3>Toggle / Switch</h3><p class="de">Schiebeschalter</p>
+        <p class="def">Klicke den Schalter &mdash; wirkt sofort, ohne extra Speichern-Klick. Typisch für Ein/Aus-Einstellungen.</p></div>
+      </article>
+
+      <article class="term" data-name="select auswahlliste klappliste">
+        <div class="term-demo">
+          <div class="field"><label>Kategorie</label><select><option>Möbel</option><option>Transport</option><option>Beratung</option></select></div>
+        </div>
+        <div><h3>Select</h3><p class="de">Auswahlliste</p>
+        <p class="def">Klappliste zur Auswahl eines Werts aus vorgegebenen Optionen &mdash; wie Dropdown, aber meist Teil eines Formulars.</p></div>
+      </article>
+
+      <article class="term" data-name="autocomplete autovervollständigung vorschläge">
+        <div class="term-demo">
+          <div class="field">
+            <label>Firma</label>
+            <input type="text" id="acInput" oninput="filterAC(this)" placeholder="„Müll“ tippen …" autocomplete="off">
+            <div class="scrollbox" id="acList" style="display:none;max-height:84px;margin-top:4px;"></div>
+          </div>
+        </div>
+        <div><h3>Autocomplete</h3><p class="de">Autovervollständigung</p>
+        <p class="def">Tippe „müll“ ins Feld &mdash; passende Firmennamen werden live vorgeschlagen.</p></div>
+      </article>
+
+      <article class="term" data-name="stepper wizard mehrschrittig ablauf">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div class="step-row" id="stepRow">
+              <div class="step-dot active" data-i="1">1</div><div class="step-line"></div>
+              <div class="step-dot" data-i="2">2</div><div class="step-line"></div>
+              <div class="step-dot" data-i="3">3</div>
+            </div>
+            <p class="demo-note" id="stepNote">Schritt 1: Kunde wählen</p>
+            <div style="display:flex;gap:6px;margin-top:6px;justify-content:center;">
+              <button class="btn small" onclick="stepMove(-1)">Zurück</button>
+              <button class="btn small primary" onclick="stepMove(1)">Weiter</button>
+            </div>
+          </div>
+        </div>
+        <div><h3>Stepper / Wizard</h3><p class="de">Mehrschrittiger Ablauf</p>
+        <p class="def">Klicke „Weiter“ &mdash; führt durch eine Aufgabe in klar nummerierten Etappen statt alles auf einmal abzufragen.</p></div>
+      </article>
+
+      <article class="term" data-name="validation validierung fehlermeldung eingabefehler">
+        <div class="term-demo">
+          <div class="field">
+            <label>Rechnungsdatum</label>
+            <input type="text" placeholder="TT.MM.JJJJ" oninput="checkDate(this)">
+            <span class="err-msg" id="valErr" style="display:none;">Bitte im Format TT.MM.JJJJ eingeben</span>
+          </div>
+        </div>
+        <div><h3>Validation</h3><p class="de">Validierung</p>
+        <p class="def">Tippe z. B. „14082026“ ein &mdash; du siehst live die rote Fehlermarkierung, bis das Format stimmt.</p></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FEEDBACK & STATUS -->
+  <section class="cat" data-cat="feedback">
+    <div class="cat-head"><h2>Feedback &amp; Status</h2><span class="n">7 Begriffe</span></div>
+    <div class="grid">
+
+      <article class="term" data-name="toast snackbar meldung hinweis benachrichtigung kurz">
+        <div class="term-demo">
+          <button class="btn primary small" onclick="fireToast()">Speichern</button>
+          <p class="demo-note">Meldung erscheint unten am Bildschirmrand.</p>
+        </div>
+        <div><h3>Toast / Snackbar</h3><p class="de">Kurzmeldung</p>
+        <p class="def">Klicke „Speichern“ &mdash; eine kurze, automatisch verschwindende Meldung erscheint, ohne Bestätigung zu verlangen.</p></div>
+      </article>
+
+      <article class="term" data-name="spinner loader ladeanimation">
+        <div class="term-demo">
+          <div class="dm-spin"></div>
+          <p class="demo-note">läuft, solange die Aktion dauert</p>
+        </div>
+        <div><h3>Spinner / Loader</h3><p class="de">Ladeanimation</p>
+        <p class="def">Sich drehendes Symbol für eine laufende Aktion ohne bekannte Dauer &mdash; „es passiert etwas, bitte warten“.</p></div>
+      </article>
+
+      <article class="term" data-name="progress bar fortschrittsbalken">
+        <div class="term-demo">
+          <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
+            <div style="height:8px;border-radius:5px;background:var(--line);overflow:hidden;"><div id="pbar" style="height:100%;width:0%;background:var(--accent);border-radius:5px;transition:width 1.6s linear;"></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="demo-note" id="pbarNote" style="margin:0;">0 %</span><button class="btn small" onclick="runProgress()">Upload starten</button></div>
+          </div>
+        </div>
+        <div><h3>Progress Bar</h3><p class="de">Fortschrittsbalken</p>
+        <p class="def">Klicke „Upload starten“ &mdash; zeigt den Fortschritt einer Aktion mit bekannter Dauer oder Menge.</p></div>
+      </article>
+
+      <article class="term" data-name="skeleton loader platzhalter ladezustand">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div id="skelWrap" style="text-align:left;">
+              <div class="dm-skel" style="height:9px;width:55%;margin-bottom:6px;"></div>
+              <div class="dm-skel" style="height:9px;width:85%;margin-bottom:6px;"></div>
+              <div class="dm-skel" style="height:9px;width:70%;"></div>
+            </div>
+            <button class="btn small" style="margin-top:8px;" onclick="loadSkeleton(this)">Inhalt laden</button>
+          </div>
+        </div>
+        <div><h3>Skeleton Loader</h3><p class="de">Platzhalter-Gerüst</p>
+        <p class="def">Klicke „Inhalt laden“ &mdash; graue, pulsierende Blöcke in der Form des künftigen Inhalts, während dieser lädt.</p></div>
+      </article>
+
+      <article class="term" data-name="empty state leerzustand keine daten">
+        <div class="term-demo">
+          <div style="text-align:center;">
+            <p style="font-size:24px;margin:0 0 4px;opacity:.55;">🗒️</p>
+            <p style="margin:0 0 8px;font-size:11.5px;color:var(--ink-faint);">Noch keine Aufträge vorhanden</p>
+            <button class="btn small">+ Ersten Auftrag anlegen</button>
+          </div>
+        </div>
+        <div><h3>Empty State</h3><p class="de">Leerzustand</p>
+        <p class="def">Bewusst gestaltete Ansicht für „noch keine Daten“, statt einer leeren, verwirrenden Fläche &mdash; meist mit direktem nächsten Schritt.</p></div>
+      </article>
+
+      <article class="term" data-name="error state fehlerzustand fehleranzeige">
+        <div class="term-demo">
+          <div style="text-align:center;">
+            <p style="font-size:20px;margin:0 0 4px;color:var(--danger);">⚠ Speichern fehlgeschlagen</p>
+            <button class="btn small" onclick="retryError(this)">Erneut versuchen</button>
+          </div>
+        </div>
+        <div><h3>Error State</h3><p class="de">Fehlerzustand</p>
+        <p class="def">Klicke „Erneut versuchen“ &mdash; klare Anzeige, wenn etwas fehlschlägt, mit Ursache und nächstem Schritt.</p></div>
+      </article>
+
+      <article class="term" data-name="notification badge glocke benachrichtigungsanzahl">
+        <div class="term-demo">
+          <button class="btn icon" style="position:relative;font-size:18px;" onclick="readNotif(this)" data-tip="3 neue Meldungen — klicken zum Lesen">🔔<span id="notifDot" style="position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--danger);border:1.5px solid var(--surface-alt);"></span></button>
+        </div>
+        <div><h3>Notification Badge</h3><p class="de">Benachrichtigungs-Zähler</p>
+        <p class="def">Klicke die Glocke &mdash; der Punkt markiert ungelesene Meldungen und verschwindet, sobald sie „gelesen“ sind.</p></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- INTERAKTION & ZUSTÄNDE -->
+  <section class="cat" data-cat="interaktion">
+    <div class="cat-head"><h2>Interaktion &amp; Zustände</h2><span class="n">5 Begriffe</span></div>
+    <div class="grid">
+
+      <article class="term" data-name="hover state hover zustand mauszeiger">
+        <div class="term-demo">
+          <button class="btn hover-target" style="cursor:default;">Bearbeiten</button>
+          <p class="demo-note">Fahre mit der Maus darüber.</p>
+        </div>
+        <div><h3>Hover State</h3><p class="de">Hover-Zustand</p>
+        <p class="def">Optisches Signal, sobald die Maus über ein Element schwebt &mdash; zeigt „das ist klickbar“, ohne dass geklickt wurde.</p></div>
+      </article>
+
+      <article class="term" data-name="focus state fokus tastatur tab">
+        <div class="term-demo">
+          <button class="btn">Speichern</button>
+          <p class="demo-note">Klicke oder drücke Tab, um zu fokussieren.</p>
+        </div>
+        <div><h3>Focus State</h3><p class="de">Fokus-Zustand</p>
+        <p class="def">Sichtbarer Rahmen um ein Element bei Tastaturbedienung (Tab-Taste) &mdash; wichtig für Bedienbarkeit ohne Maus.</p></div>
+      </article>
+
+      <article class="term" data-name="disabled state deaktiviert ausgegraut">
+        <div class="term-demo">
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <label class="switch"><input type="checkbox" onchange="toggleDisabled(this)"><span class="rail"></span> Formular vollständig</label>
+            <button class="btn primary" id="disBtn" disabled>Absenden</button>
+          </div>
+        </div>
+        <div><h3>Disabled State</h3><p class="de">Deaktivierter Zustand</p>
+        <p class="def">Aktiviere den Schalter &mdash; erst dann wird „Absenden“ klickbar. Zeigt, dass eine Aktion aktuell nicht möglich ist.</p></div>
+      </article>
+
+      <article class="term" data-name="drag and drop ziehen ablegen verschieben">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <ul class="draglist">
+              <li draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)" ondragend="dragEnd(event)"><span class="grip">⠿</span> Auftrag #41</li>
+              <li draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)" ondragend="dragEnd(event)"><span class="grip">⠿</span> Auftrag #42</li>
+              <li draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)" ondragend="dragEnd(event)"><span class="grip">⠿</span> Auftrag #43</li>
+            </ul>
+            <p class="demo-note">Ziehe einen Eintrag, um die Reihenfolge zu ändern.</p>
+          </div>
+        </div>
+        <div><h3>Drag &amp; Drop</h3><p class="de">Ziehen &amp; Ablegen</p>
+        <p class="def">Element mit der Maus greifen und an anderer Stelle ablegen &mdash; z. B. um eine Reihenfolge zu ändern.</p></div>
+      </article>
+
+      <article class="term" data-name="infinite scroll lazy loading nachladen">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div class="scrollbox" id="infScroll" onscroll="checkInfScroll(this)">
+              <ul id="infList"><li>Eintrag 1</li><li>Eintrag 2</li><li>Eintrag 3</li><li>Eintrag 4</li><li>Eintrag 5</li></ul>
+            </div>
+            <p class="demo-note">Scrolle nach unten &mdash; es lädt automatisch nach.</p>
+          </div>
+        </div>
+        <div><h3>Infinite Scroll</h3><p class="de">Lazy Loading</p>
+        <p class="def">Weitere Inhalte laden automatisch nach, wenn man ans Ende der Liste scrollt &mdash; statt alles auf einmal zu laden.</p></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PRINZIPIEN -->
+  <section class="cat" data-cat="prinzipien">
+    <div class="cat-head"><h2>Design-Prinzipien</h2><span class="n">10 Begriffe</span></div>
+    <div class="grid">
+
+      <article class="term" data-name="whitespace weißraum abstand">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <button class="btn small" onclick="toggleWS(this)">eng / luftig umschalten</button>
+            <div id="wsBox" style="margin-top:8px;display:flex;gap:4px;justify-content:center;">
+              <div class="dm-swatch" style="background:var(--ink-faint);"></div><div class="dm-swatch" style="background:var(--ink-faint);"></div><div class="dm-swatch" style="background:var(--ink-faint);"></div>
+            </div>
+          </div>
+        </div>
+        <div><h3>Whitespace</h3><p class="de">Weißraum</p>
+        <p class="def">Klicke den Button &mdash; derselbe Inhalt wirkt mit mehr Abstand sofort ruhiger und leichter lesbar.</p></div>
+      </article>
+
+      <article class="term" data-name="kontrast contrast lesbarkeit">
+        <div class="term-demo">
+          <div style="width:100%;text-align:center;">
+            <div id="contrastSwatch" style="background:#e7e7e7;color:#bdbdbd;padding:10px;border-radius:7px;font:700 13px var(--sans);">Fällig: 14.08.</div>
+            <button class="btn small" style="margin-top:8px;" onclick="toggleContrast(this)">Kontrast verbessern</button>
+          </div>
+        </div>
+        <div><h3>Kontrast</h3><p class="de">Contrast</p>
+        <p class="def">Klicke „Kontrast verbessern“ &mdash; derselbe Text wird lesbar, sobald der Helligkeitsunterschied zum Hintergrund stimmt.</p></div>
+      </article>
+
+      <article class="term" data-name="typografische hierarchie typography schriftgröße">
+        <div class="term-demo">
+          <div style="text-align:left;">
+            <span style="display:block;font:700 17px var(--sans);">Aufträge</span>
+            <span style="display:block;font:12px var(--sans);color:var(--ink-soft);">7 offen, 2 überfällig</span>
+          </div>
+        </div>
+        <div><h3>Typografische Hierarchie</h3><p class="de">Type Hierarchy</p>
+        <p class="def">Unterschiedliche Schriftgrößen und -gewichte zeigen, was Überschrift, was Fließtext und was Nebeninfo ist.</p></div>
+      </article>
+
+      <article class="term" data-name="responsive design bildschirmgröße mobil desktop">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div class="resizer-box">
+              <div class="rb-nav"><span>Start</span><span>Aufträge</span><span>Kontakt</span></div>
+            </div>
+            <p class="demo-note">Ziehe die Ecke unten rechts, um die Breite zu ändern.</p>
+          </div>
+        </div>
+        <div><h3>Responsive Design</h3><p class="de">Anpassungsfähiges Layout</p>
+        <p class="def">Layout passt sich automatisch an die verfügbare Breite an &mdash; vom Desktop bis zum Smartphone.</p></div>
+      </article>
+
+      <article class="term" data-name="dark mode dunkelmodus nachtmodus">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div id="darkDemo" style="background:#ffffff;color:#111111;border:1.4px solid #dddddd;border-radius:8px;padding:12px;transition:background .2s,color .2s,border-color .2s;text-align:left;">
+              <p style="margin:0 0 6px;font:700 12.5px var(--sans);">Dashboard</p>
+              <p style="margin:0;font-size:11.5px;opacity:.75;">7 offene Aufträge</p>
+            </div>
+            <label class="switch" style="margin-top:8px;justify-content:center;width:100%;"><input type="checkbox" onchange="toggleDarkDemo(this)"><span class="rail"></span> Dark Mode</label>
+          </div>
+        </div>
+        <div><h3>Dark Mode</h3><p class="de">Dunkelmodus</p>
+        <p class="def">Klicke den Schalter &mdash; dieselbe Oberfläche in einer dunklen Farbgestaltung, angenehmer bei wenig Licht.</p></div>
+      </article>
+
+      <article class="term" data-name="barrierefreiheit accessibility a11y">
+        <div class="term-demo">
+          <div style="width:100%;">
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <button class="btn small">Bearbeiten</button>
+              <button class="btn small">Löschen</button>
+              <button class="btn small">Exportieren</button>
+            </div>
+            <p class="demo-note">Drücke Tab &mdash; der Fokusring bleibt sichtbar.</p>
+          </div>
+        </div>
+        <div><h3>Barrierefreiheit</h3><p class="de">Accessibility (a11y)</p>
+        <p class="def">Gestaltung, die auch mit Tastatur, Screenreader oder bei Sehschwäche nutzbar ist &mdash; z. B. genug Kontrast, sichtbarer Fokus.</p></div>
+      </article>
+
+      <article class="term" data-name="call to action cta button haupthandlung">
+        <div class="term-demo">
+          <button class="btn primary" style="padding:10px 20px;">+ Auftrag anlegen</button>
+        </div>
+        <div><h3>Call to Action</h3><p class="de">CTA</p>
+        <p class="def">Der Button, der die gewünschte nächste Handlung auslöst &mdash; meist optisch am stärksten hervorgehoben.</p></div>
+      </article>
+
+      <article class="term" data-name="hero section einstiegsbereich kopfbereich">
+        <div class="term-demo">
+          <div style="width:100%;background:var(--accent-soft);border-radius:8px;padding:14px;text-align:left;">
+            <p style="margin:0 0 4px;font:700 14px var(--sans);color:var(--accent-ink);">Willkommen zurück, Linda</p>
+            <p style="margin:0 0 8px;font-size:11.5px;color:var(--accent-ink);opacity:.85;">3 Aufträge warten auf Freigabe.</p>
+            <button class="btn primary small">Jetzt prüfen</button>
+          </div>
+        </div>
+        <div><h3>Hero Section</h3><p class="de">Einstiegsbereich</p>
+        <p class="def">Auffälliger erster Bereich einer Seite, der sofort zeigt, worum es geht und was als Nächstes zu tun ist.</p></div>
+      </article>
+
+      <article class="term" data-name="wireframe skizze rohentwurf">
+        <div class="term-demo">
+          <div style="width:100%;display:flex;flex-direction:column;gap:5px;">
+            <div style="height:9px;background:#cfd3ce;border-radius:3px;width:45%;"></div>
+            <div style="display:flex;gap:5px;"><div style="height:26px;width:24%;background:#e2e5df;border:1.4px solid #b9beb3;border-radius:4px;"></div><div style="height:26px;flex:1;background:#e2e5df;border:1.4px solid #b9beb3;border-radius:4px;"></div></div>
+          </div>
+        </div>
+        <div><h3>Wireframe</h3><p class="de">Rohentwurf</p>
+        <p class="def">Grobe, meist grau-weiße Skizze eines Bildschirms ohne endgültige Farben oder Texte &mdash; zeigt nur die Struktur.</p></div>
+      </article>
+
+      <article class="term" data-name="prototype mockup klickbare vorschau standbild">
+        <div class="term-demo">
+          <div style="width:100%;text-align:center;">
+            <button class="btn small" id="pmBtn" onclick="clickPM(this)">Speichern</button>
+            <p class="demo-note" id="pmNote">Modus: Mockup (reagiert nicht wirklich)</p>
+            <label class="switch" style="margin-top:4px;justify-content:center;width:100%;"><input type="checkbox" onchange="togglePM(this)"><span class="rail"></span> Als Prototype</label>
+          </div>
+        </div>
+        <div><h3>Prototype / Mockup</h3><p class="de">Klickbare Vorschau / Standbild</p>
+        <p class="def">Mockup = fertig gestaltetes Standbild ohne Funktion. Aktiviere „Als Prototype“ und klicke erneut &mdash; jetzt reagiert der Button wirklich.</p></div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer class="note">Begriffe gelten sprach- und framework-unabhängig &mdash; nützlich, egal ob es um Müllers Dashboard, Hoffmanns Stammdaten oder Schmidts Transportaufträge geht.</footer>
+</div>
+
+<script>
+  /* ---------- Suche & Filter ---------- */
+  const q = document.getElementById('q');
+  const chips = document.querySelectorAll('.chip');
+  const cats = document.querySelectorAll('.cat');
+  const emptyMsg = document.getElementById('emptyMsg');
+  let activeCat = 'all';
+
+  function apply(){
+    const query = q.value.trim().toLowerCase();
+    let anyVisible = false;
+    cats.forEach(cat => {
+      const catKey = cat.dataset.cat;
+      let catHasVisible = false;
+      if (activeCat !== 'all' && activeCat !== catKey){
+        cat.dataset.empty = 'true';
+        cat.querySelectorAll('.term').forEach(t => t.hidden = true);
+        return;
+      }
+      cat.querySelectorAll('.term').forEach(term => {
+        const matches = !query || term.dataset.name.includes(query);
+        term.hidden = !matches;
+        if (matches) { catHasVisible = true; anyVisible = true; }
+      });
+      cat.dataset.empty = catHasVisible ? 'false' : 'true';
+    });
+    emptyMsg.classList.toggle('show', !anyVisible);
+  }
+  q.addEventListener('input', apply);
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.setAttribute('aria-pressed','false'));
+      chip.setAttribute('aria-pressed','true');
+      activeCat = chip.dataset.cat;
+      apply();
+    });
+  });
+
+  /* ---------- Sidebar ---------- */
+  function toggleSidebar(btn){
+    const wrap = document.getElementById('sbDemo');
+    wrap.classList.toggle('collapsed');
+    btn.textContent = wrap.classList.contains('collapsed') ? '»' : '«';
+  }
+
+  /* ---------- Breadcrumb ---------- */
+  function crumbClick(btn){
+    let node = btn.nextSibling;
+    while (node){ const next = node.nextSibling; node.remove(); node = next; }
+    const span = document.createElement('span');
+    span.className = 'current';
+    span.textContent = btn.textContent;
+    btn.replaceWith(span);
+  }
+  function resetCrumbs(){
+    document.getElementById('crumbDemo').innerHTML =
+      '<button onclick="crumbClick(this)">Start</button><span class="sep">/</span>' +
+      '<button onclick="crumbClick(this)">Aufträge</button><span class="sep">/</span>' +
+      '<span class="current">#42</span>';
+  }
+
+  /* ---------- Tabs ---------- */
+  function switchTab(btn){
+    const bar = btn.parentElement;
+    bar.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected','false'));
+    btn.setAttribute('aria-selected','true');
+    bar.nextElementSibling.textContent = btn.dataset.panel;
+  }
+
+  /* ---------- Pagination ---------- */
+  function setPage(btn){
+    const pager = btn.closest('.pager');
+    pager.querySelectorAll('button[data-page]').forEach(b => b.removeAttribute('aria-current'));
+    btn.setAttribute('aria-current','true');
+    const note = document.getElementById('pageNote');
+    const p = +btn.dataset.page;
+    note.textContent = 'Zeigt Einträge ' + ((p - 1) * 10 + 1) + '–' + (p * 10);
+  }
+
+  /* ---------- Hamburger ---------- */
+  function toggleHamburger(btn){
+    const menu = btn.nextElementSibling;
+    const open = menu.style.display === 'block';
+    menu.style.display = open ? 'none' : 'block';
+    btn.textContent = open ? '☰' : '✕';
+  }
+
+  /* ---------- Dropdown ---------- */
+  function pickStatus(btn, val){
+    const det = btn.closest('details');
+    det.querySelector('.dstat').textContent = val;
+    det.open = false;
+  }
+
+  /* ---------- Chips ---------- */
+  function resetChips(){
+    document.getElementById('chipRow').innerHTML =
+      '<span class="chip-real">Dringend <button onclick="this.parentElement.remove()">×</button></span>' +
+      '<span class="chip-real">Möbel <button onclick="this.parentElement.remove()">×</button></span>';
+  }
+
+  /* ---------- Autocomplete ---------- */
+  const AC_DATA = ["Schreinerei Müller","Müller Transport GmbH","Hoffmann Steuerberatung","Schmidt Logistik","Müllerbräu Getränke"];
+  function filterAC(input){
+    const val = input.value.trim().toLowerCase();
+    const list = document.getElementById('acList');
+    if (!val){ list.style.display = 'none'; list.innerHTML = ''; return; }
+    const matches = AC_DATA.filter(n => n.toLowerCase().includes(val));
+    if (!matches.length){ list.style.display = 'none'; list.innerHTML = ''; return; }
+    const ul = document.createElement('ul');
+    matches.forEach(m => {
+      const li = document.createElement('li');
+      li.textContent = m;
+      li.style.cursor = 'pointer';
+      li.addEventListener('click', () => selectAC(m));
+      ul.appendChild(li);
+    });
+    list.innerHTML = '';
+    list.appendChild(ul);
+    list.style.display = 'block';
+  }
+  function selectAC(val){
+    document.getElementById('acInput').value = val;
+    document.getElementById('acList').style.display = 'none';
+  }
+
+  /* ---------- Stepper ---------- */
+  let stepCurrent = 1;
+  const STEP_LABELS = {1:'Schritt 1: Kunde wählen', 2:'Schritt 2: Positionen erfassen', 3:'Schritt 3: Bestätigen'};
+  function stepMove(d){
+    stepCurrent = Math.min(3, Math.max(1, stepCurrent + d));
+    document.querySelectorAll('#stepRow .step-dot').forEach(dot => {
+      const i = +dot.dataset.i;
+      dot.classList.remove('active','done');
+      if (i < stepCurrent) dot.classList.add('done');
+      else if (i === stepCurrent) dot.classList.add('active');
+    });
+    document.getElementById('stepNote').textContent = STEP_LABELS[stepCurrent];
+  }
+
+  /* ---------- Validation ---------- */
+  function checkDate(input){
+    const val = input.value.trim();
+    const err = document.getElementById('valErr');
+    if (!val){ input.classList.remove('error'); err.style.display = 'none'; return; }
+    const ok = /^\d{2}\.\d{2}\.\d{4}$/.test(val);
+    input.classList.toggle('error', !ok);
+    err.style.display = ok ? 'none' : 'block';
+  }
+
+  /* ---------- Toast ---------- */
+  function fireToast(){
+    let host = document.getElementById('toastHost');
+    if (!host){ host = document.createElement('div'); host.id = 'toastHost'; host.className = 'toast-host'; document.body.appendChild(host); }
+    const t = document.createElement('div');
+    t.className = 'toast-item';
+    t.textContent = '✓ Auftrag gespeichert';
+    host.appendChild(t);
+    setTimeout(() => t.remove(), 2400);
+  }
+
+  /* ---------- Progress ---------- */
+  function runProgress(){
+    const bar = document.getElementById('pbar');
+    const note = document.getElementById('pbarNote');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    note.textContent = '0 %';
+    requestAnimationFrame(() => {
+      bar.style.transition = 'width 1.6s linear';
+      bar.style.width = '100%';
+    });
+    let n = 0;
+    const iv = setInterval(() => {
+      n += 4;
+      if (n >= 100){ clearInterval(iv); note.textContent = 'Fertig ✓'; return; }
+      note.textContent = n + ' %';
+    }, 64);
+  }
+
+  /* ---------- Skeleton ---------- */
+  function loadSkeleton(btn){
+    const wrap = document.getElementById('skelWrap');
+    btn.disabled = true;
+    btn.textContent = 'Lädt …';
+    setTimeout(() => {
+      wrap.innerHTML = '<p style="margin:0;font:700 13px var(--sans);">Auftrag #42</p><p style="margin:2px 0 0;font-size:12px;color:var(--ink-soft);">Schreinerei Müller &middot; fällig 14.08.2026</p>';
+      btn.textContent = 'Erneut laden';
+      btn.disabled = false;
+    }, 1100);
+  }
+
+  /* ---------- Error retry ---------- */
+  function retryError(btn){
+    const p = btn.previousElementSibling;
+    btn.disabled = true;
+    btn.textContent = 'Versuche erneut …';
+    setTimeout(() => {
+      p.textContent = '✓ Erfolgreich gespeichert';
+      p.style.color = 'var(--ok)';
+      btn.remove();
+    }, 1000);
+  }
+
+  /* ---------- Notification badge ---------- */
+  function readNotif(btn){
+    const dot = document.getElementById('notifDot');
+    if (dot){ dot.remove(); btn.removeAttribute('data-tip'); }
+  }
+
+  /* ---------- Disabled toggle ---------- */
+  function toggleDisabled(chk){
+    document.getElementById('disBtn').disabled = !chk.checked;
+  }
+
+  /* ---------- Drag & Drop ---------- */
+  let dragEl = null;
+  function dragStart(e){ dragEl = e.currentTarget; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+  function dragOver(e){
+    e.preventDefault();
+    const li = e.currentTarget;
+    if (li === dragEl || !dragEl) return;
+    const list = li.parentElement;
+    const items = [...list.children];
+    const dragIdx = items.indexOf(dragEl);
+    const overIdx = items.indexOf(li);
+    if (dragIdx < overIdx) li.after(dragEl); else li.before(dragEl);
+  }
+  function dragDrop(e){ e.preventDefault(); }
+  function dragEnd(e){ e.currentTarget.classList.remove('dragging'); dragEl = null; }
+
+  /* ---------- Infinite scroll ---------- */
+  let infCount = 5;
+  function checkInfScroll(box){
+    if (box.scrollTop + box.clientHeight >= box.scrollHeight - 6){
+      const list = document.getElementById('infList');
+      for (let i = 0; i < 3; i++){
+        infCount++;
+        const li = document.createElement('li');
+        li.textContent = 'Eintrag ' + infCount;
+        list.appendChild(li);
+      }
+    }
+  }
+
+  /* ---------- Whitespace ---------- */
+  function toggleWS(btn){
+    const box = document.getElementById('wsBox');
+    const tight = box.style.gap === '4px' || box.style.gap === '';
+    box.style.gap = tight ? '22px' : '4px';
+  }
+
+  /* ---------- Contrast ---------- */
+  function toggleContrast(btn){
+    const sw = document.getElementById('contrastSwatch');
+    const bad = sw.style.color === '#bdbdbd' || sw.style.color === '';
+    sw.style.background = bad ? '#1c2023' : '#e7e7e7';
+    sw.style.color = bad ? '#ffffff' : '#bdbdbd';
+    btn.textContent = bad ? 'Zurück zu schlechtem Kontrast' : 'Kontrast verbessern';
+  }
+
+  /* ---------- Dark mode demo box ---------- */
+  function toggleDarkDemo(chk){
+    const box = document.getElementById('darkDemo');
+    if (chk.checked){ box.style.background = '#14171a'; box.style.color = '#eceeea'; box.style.borderColor = '#31373a'; }
+    else { box.style.background = '#ffffff'; box.style.color = '#111111'; box.style.borderColor = '#dddddd'; }
+  }
+
+  /* ---------- Prototype vs. Mockup ---------- */
+  let pmIsProto = false;
+  function togglePM(chk){
+    pmIsProto = chk.checked;
+    document.getElementById('pmNote').textContent = pmIsProto
+      ? 'Modus: Prototype (klicke „Speichern“)'
+      : 'Modus: Mockup (reagiert nicht wirklich)';
+  }
+  function clickPM(btn){
+    const note = document.getElementById('pmNote');
+    note.textContent = pmIsProto
+      ? '✓ hat reagiert — genau das simuliert ein Prototype.'
+      : '… nichts passiert — ein Mockup ist nur ein Standbild.';
+  }
+</script>
+</body>
+</html>
