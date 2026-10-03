@@ -1,6 +1,6 @@
 # UI/UX-Glossar
 
-Interaktives Nachschlagewerk für UI/UX-Begriffe. Jeder der 46 Begriffe hat ein echtes, bedienbares Mini-Beispiel direkt auf der Seite (echtes Modal, echtes Dropdown, echte Validierung usw.) statt einer bloßen Abbildung.
+Interaktives Nachschlagewerk für UI/UX-Begriffe. Jeder der 62 Begriffe hat ein echtes, bedienbares Mini-Beispiel direkt auf der Seite (echtes Modal, echtes Dropdown, echte Validierung usw.) statt einer bloßen Abbildung.
 
 **Live:** https://lindapirkl-freelance.github.io/uiux-glossar/
 
